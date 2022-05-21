@@ -1,4 +1,4 @@
-<div class="container-scroller">
+
       <!-- partial:partials/_sidebar.html -->
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
@@ -11,7 +11,7 @@
             <span class="nav-link">Navigation</span>
           </li>
           <li class="nav-item menu-items">
-            <a class="nav-link" href="index.html">
+            <a class="nav-link" href="{{route('admin.users')}}">
               <span class="menu-icon">
                 <i class="mdi mdi-speedometer"></i>
               </span>
@@ -20,11 +20,11 @@
           </li>
           
           <li class="nav-item menu-items">
-            <a class="nav-link" href="pages/forms/basic_elements.html">
+            <a class="nav-link" href="{{route('foodmenu')}}">
               <span class="menu-icon">
                 <i class="mdi mdi-playlist-play"></i>
               </span>
-              <span class="menu-title">Foods</span>
+              <span class="menu-title">FoodMenu</span>
             </a>
           </li>
           <li class="nav-item menu-items">
@@ -45,5 +45,3 @@
           </li>
         </ul>
       </nav>    
-
-</div>

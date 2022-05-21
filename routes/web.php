@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,11 @@ use App\Http\Controllers\HomeController;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/redirects', [HomeController::class, 'redirects']);
+
+Route::get('/users', [AdminController::class, 'users'])->name('admin.users');
+Route::get('/foodmenu', [AdminController::class, 'foodmenu'])->name('foodmenu');
+Route::post('/foodmenu/upload', [AdminController::class, 'upload'])->name('food.create');
+Route::get('/delete/{id}', [AdminController::class, 'delete']);
 
 
 Route::middleware([
