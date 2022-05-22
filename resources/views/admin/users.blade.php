@@ -12,7 +12,7 @@
             @include('admin.navbar')
             <div class="container" style ="padding-top: 50px">
                   <h1>User Panel</h1>
-                   <table class="table table-dark">
+                  <table class="table table-dark">
                         <thead>
                               <tr>
                                     <!-- <th scope="col" style="font-weight: bold">ID</th> -->

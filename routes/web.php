@@ -23,8 +23,13 @@ Route::get('/redirects', [HomeController::class, 'redirects']);
 
 Route::get('/users', [AdminController::class, 'users'])->name('admin.users');
 Route::get('/foodmenu', [AdminController::class, 'foodmenu'])->name('foodmenu');
+Route::get('/food/delete/{id}', [AdminController::class, 'deleteMenu']);
+Route::get('/food/update/{id}', [AdminController::class, 'updateMenu']);
+Route::post('/food/updated/{id}', [AdminController::class, 'updateSubmitMenu'])->name('food.update');
 Route::post('/foodmenu/upload', [AdminController::class, 'upload'])->name('food.create');
 Route::get('/delete/{id}', [AdminController::class, 'delete']);
+Route::post('/reservation', [AdminController::class, 'reservation'])->name('reservation');
+Route::get('/viewReservation', [AdminController::class, 'viewReservation'])->name('CheckReservation');
 
 
 Route::middleware([
