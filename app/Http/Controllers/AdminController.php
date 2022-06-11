@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Food;
 use App\Models\Reservation;
+use App\Models\FoodChef;
 
 class AdminController extends Controller
 {
@@ -98,5 +99,26 @@ class AdminController extends Controller
         $data = reservation::all();
 
         return view('admin.adminReservation', compact('data'));
+    }
+
+    public function viewChefs(){
+        return view('admin.adminchef');
+    }
+
+    public function addchefs(Request $req){
+        $data = new foodchef;
+
+        $data->name = $req->name;
+        $data->speciality = $req->speciality;
+
+        $img = $req->img;
+        $imgname = time().'.'.$img->getClientOriginalExtension();
+        $req->img->move('chefimage', $imgname);
+        $data->image = $imgname;
+
+
+        $data->save();
+
+        return redirect()->back();
     }
 }

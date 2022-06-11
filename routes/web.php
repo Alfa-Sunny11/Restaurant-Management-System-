@@ -30,8 +30,10 @@ Route::post('/foodmenu/upload', [AdminController::class, 'upload'])->name('food.
 Route::get('/delete/{id}', [AdminController::class, 'delete']);
 Route::post('/reservation', [AdminController::class, 'reservation'])->name('reservation');
 Route::get('/viewReservation', [AdminController::class, 'viewReservation'])->name('CheckReservation');
+Route::get('/viewChefs', [AdminController::class, 'viewChefs'])->name('viewChefs');
+Route::post('/uploadChef', [AdminController::class, 'addchefs'])->name('addchefs');
 
-
+ 
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
