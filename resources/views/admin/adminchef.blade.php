@@ -47,6 +47,38 @@
                               </div>
                         </div>
 
+                        <div style="padding-top:50px">
+                        <h1>Chefs List</h1>
+                              <table class="table table-dark">
+                                    <thead>
+                                          <tr>
+                                                <!-- <th scope="col" style="font-weight: bold">ID</th> -->
+                                                <th scope="col" style="font-weight: bold; color: white">Name</th>
+                                                <th scope="col" style="font-weight: bold; color: white">Speciality</th>
+                                                <th scope="col" style="font-weight: bold; color: white">Image</th>
+                                                <th scope="col" style="font-weight: bold; color: white">Action</th>
+                                          </tr>                                          
+                                    </thead>
+                                    @foreach($data as $data)
+                                          <tbody>
+                                                                                          
+                                                <tr>
+                                                      <!-- <td>{{$data->id}}</td> -->
+                                                      <td style="color: white">{{$data->name}}</td>
+                                                      <td style="color: white">{{$data->speciality}}</td>
+                                                      <td><img style="height:150px; width:150px" src="/chefimage/{{$data->image}}"></td>
+                                                      <td>
+                                                            <a href="{{url('/chef/update', $data->id)}}">Edit</a> <br><br> 
+                                                            <a href="{{url('/chef/delete', $data->id)}}">Delete</a>
+                                                      </td>
+                                                      <td></td>
+                                                </tr>
+                                                                                          
+                                          </tbody>
+                                    @endforeach
+                              </table>
+                        </div>
+
             </div>
       </div>
     </div>

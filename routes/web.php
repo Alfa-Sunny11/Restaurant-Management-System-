@@ -32,6 +32,9 @@ Route::post('/reservation', [AdminController::class, 'reservation'])->name('rese
 Route::get('/viewReservation', [AdminController::class, 'viewReservation'])->name('CheckReservation');
 Route::get('/viewChefs', [AdminController::class, 'viewChefs'])->name('viewChefs');
 Route::post('/uploadChef', [AdminController::class, 'addchefs'])->name('addchefs');
+Route::get('/chef/update/{id}', [AdminController::class, 'updateChefs']);
+Route::post('/chef/updated/{id}', [AdminController::class, 'updateChefSubmit'])->name('chef.update');
+Route::get('/chef/delete/{id}', [AdminController::class, 'deleteChef']);
 
  
 Route::middleware([
