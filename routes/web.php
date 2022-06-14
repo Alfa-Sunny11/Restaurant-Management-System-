@@ -35,6 +35,8 @@ Route::post('/uploadChef', [AdminController::class, 'addchefs'])->name('addchefs
 Route::get('/chef/update/{id}', [AdminController::class, 'updateChefs']);
 Route::post('/chef/updated/{id}', [AdminController::class, 'updateChefSubmit'])->name('chef.update');
 Route::get('/chef/delete/{id}', [AdminController::class, 'deleteChef']);
+Route::post('/addcart/{id}', [HomeController::class, 'addCart']);
+Route::get('/showCart/{id}', [HomeController::class, 'showCart']);
 
  
 Route::middleware([
