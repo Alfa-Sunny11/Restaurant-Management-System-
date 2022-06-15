@@ -29,6 +29,8 @@ https://templatemo.com/tm-558-klassy-cafe
 
     <link rel="stylesheet" href="assets/css/lightbox.css">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
     </head>
     
     <body>
@@ -150,26 +152,93 @@ https://templatemo.com/tm-558-klassy-cafe
                                           <th scope="col" >Action</th>
                                     </tr>                                          
                               </thead>
+                              <form action="{{url('/orderconfirm')}}" method="post">
                               @foreach($data as $data)
                                     <tbody>
                                                                                     
                                           <tr>
-                                                <td scope="row">{{$data->title}}</td>
-                                                <td scope="row">{{$data->price}}</td>
-                                                <td scope="row">{{$data->quantity}}</td>
                                                 <td scope="row">
-                                                      <a href="#">Edit</a> <br><br> 
-                                                      <a href="#">Delete</a>
+                                                    <input type="text" name="foodname[]" value="{{$data->title}}" hidden>
+                                                    {{$data->title}}
                                                 </td>
+                                                <td scope="row">
+                                                    <input type="text" name="price[]" value="{{$data->price}}" hidden>
+                                                    {{$data->price}}
+                                                </td>
+                                                <td scope="row">
+                                                    <input type="text" name="quantity[]" value="{{$data->quantity}}" hidden>
+                                                    {{$data->quantity}}
+                                                </td>
+                                                
 
                                           </tr>
                                                                                     
                                     </tbody>
                               @endforeach
+
+                              @foreach($data2 as $data2)
+                                <tr style=" right: -860px">
+                                    <td scope="row">
+                                        <a href="{{url('/remove',$data2->id)}}" class="btn btn-warning">Remove</a>
+                                    </td>
+                                </tr>  
+                              @endforeach
                         </table>
+                        <div>
+                            <button class="btn btn-info" id="order" type="button">Order Now</button>
+                            <!-- <input type="submit" class="btn btn-info" value="Order Now"> -->
+                        </div>
+                        <div class="container modal-body" style="margin-top:30px; margin-left: 600px; display:none" align="center" id="appear" >
+                            <div class="row" >
+                                <div class="col-mid-6 offset-mid-3">
+                                        <div class="card">
+                                            
+                                            <div class="card-header">
+                                            <h1 style="font-size: 30px; padding: 10px">Order Details</h1>
+                                                    <div class="card-body">
+                                                                <form method="" action=" " enctype="multipart/form-data">
+                                                                    @csrf
+                                                                    <div class="mb-3">
+                                                                            <label for="name" class="form-label">Name</label>
+                                                                            <input type="text" value="{{old('name')}}" class="form-control" id="name" name="name" placeholder="Customer Name">
+                                                                    
+                                                                    </div>
+                                                                    <div class="mb-3">
+                                                                            <label for="phone" class="form-label">Phone Number</label>
+                                                                            <input type="text" value="{{old('phone')}}" class="form-control" id="phone" name="phone">
+                                                                    
+                                                                    </div>
+                                                                    
+                                                                    <div class="mb-3">
+                                                                            <label for="address" class="form-label">Address</label>
+                                                                            <textarea type="text" value="{{old('address')}}" class="form-control" id="address" name="address"></textarea>
+                                                                    </div>
+
+                                                                    <button class="btn btn-primary">Order Confirm</button>
+                                                                </form>
+                                                                
+                                                        </div>            
+                                                </div>
+                                            </div>
+                                    </div>
+                                </div>
+                        </div> 
+                        </form> 
+                        <div style="margin-top:50px"></div>      
                   </div>
             </div>
       </div>
+      
+
+
+
+      <script type="text/javascript">
+        $("#order").click(
+            function(){
+                $("#appear").show();
+            }
+        );
+      </script>
 
         <!-- jQuery -->
         <script src="assets/js/jquery-2.1.0.min.js"></script>

@@ -29,7 +29,9 @@
                             </div>
                             <div style="padding-top: 10px;">
                                 <input type="number" name="quantity" min="1" style="width: 80px;" value="1">
-                                <input type="submit" class="btn btn-success" value="Add Cart">                               
+                                                              
+                                <!-- <input type="submit" class="btn btn-success" value="Add Cart">                                -->
+                                <button class="btn btn-success">Add Cart</button>
                             </div>
                         </div>
                     </form>    

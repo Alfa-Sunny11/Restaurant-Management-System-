@@ -37,6 +37,8 @@ Route::post('/chef/updated/{id}', [AdminController::class, 'updateChefSubmit'])-
 Route::get('/chef/delete/{id}', [AdminController::class, 'deleteChef']);
 Route::post('/addcart/{id}', [HomeController::class, 'addCart']);
 Route::get('/showCart/{id}', [HomeController::class, 'showCart']);
+Route::get('/remove/{id}', [HomeController::class, 'removeCart']);
+Route::post('/orderconfirm', [HomeController::class, 'orderconfirm']);
 
  
 Route::middleware([

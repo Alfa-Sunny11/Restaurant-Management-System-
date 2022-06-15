@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Food;
 use App\Models\FoodChef;
 use App\Models\Cart;
+use App\Models\Order;
 
 class HomeController extends Controller
 {
@@ -69,7 +70,33 @@ class HomeController extends Controller
     public function showCart(Request $req, $id){
         $count = cart::where('user_id', $id)->count();
 
+        $data2 = cart::select('*')->where('user_id', '=', $id)->get();
+
         $data = cart::where('user_id', $id)->join('food', 'carts.food_id', '=', 'food.id')->get();
-        return view('showCart', compact('count','data'));
+        return view('showCart', compact('count','data','data2'));
+    }
+
+    public function removeCart($id){
+        $data = cart::find($id);
+
+        $data->delete();
+
+        return redirect()->back();
+    }
+
+    public function orderconfirm(Request $req){
+        foreach($req->foodname as $key => $foodname){
+            $data = new order;
+            $data->foodname = $foodname;
+            $data->price = $req->price[$key];
+            $data->quantity = $req->quantity[$key];
+            $data->name = $req->name;
+            $data->phone = $req->phone;
+            $data->address = $req->address;
+
+            $data->save();
+
+            return redirect('/redirects');
+        }
     }
 }
