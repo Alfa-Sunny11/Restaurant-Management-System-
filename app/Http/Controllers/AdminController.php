@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 use App\Models\User;
 use App\Models\Food;
 use App\Models\Reservation;
 use App\Models\FoodChef;
+use App\Models\Order;
 
 class AdminController extends Controller
 {
@@ -98,7 +100,14 @@ class AdminController extends Controller
     public function viewReservation(){
         $data = reservation::all();
 
-        return view('admin.adminReservation', compact('data'));
+        if(Auth::id()){
+            return view('admin.adminReservation', compact('data'));
+        }
+        else{
+            return redirect('/login');
+        }
+
+        
     }
 
     public function viewChefs(){
@@ -151,5 +160,18 @@ class AdminController extends Controller
 
         $data->delete();
         return redirect('/viewChefs');
+    }
+
+    public function adminOrder(){
+        $data = order::all();
+
+        return view('admin.order', compact('data'));
+    }
+
+    public function search(Request $req){
+        $search = $req->search;
+        $data = order::where('name', 'Like', '%'.$search.'%')->orWhere('foodname', 'Like', '%'.$search.'%')->get();
+
+        return view('admin.order', compact('data'));
     }
 }

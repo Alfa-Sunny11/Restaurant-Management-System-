@@ -18,8 +18,11 @@ use App\Http\Controllers\AdminController;
 //     return view('welcome');
 // });
 Route::get('/', [HomeController::class, 'index'])->name('home');
-
 Route::get('/redirects', [HomeController::class, 'redirects']);
+Route::post('/addcart/{id}', [HomeController::class, 'addCart']);
+Route::get('/showCart/{id}', [HomeController::class, 'showCart']);
+Route::get('/remove/{id}', [HomeController::class, 'removeCart']);
+Route::post('/orderconfirm', [HomeController::class, 'orderconfirm']);
 
 Route::get('/users', [AdminController::class, 'users'])->name('admin.users');
 Route::get('/foodmenu', [AdminController::class, 'foodmenu'])->name('foodmenu');
@@ -35,10 +38,9 @@ Route::post('/uploadChef', [AdminController::class, 'addchefs'])->name('addchefs
 Route::get('/chef/update/{id}', [AdminController::class, 'updateChefs']);
 Route::post('/chef/updated/{id}', [AdminController::class, 'updateChefSubmit'])->name('chef.update');
 Route::get('/chef/delete/{id}', [AdminController::class, 'deleteChef']);
-Route::post('/addcart/{id}', [HomeController::class, 'addCart']);
-Route::get('/showCart/{id}', [HomeController::class, 'showCart']);
-Route::get('/remove/{id}', [HomeController::class, 'removeCart']);
-Route::post('/orderconfirm', [HomeController::class, 'orderconfirm']);
+Route::get('/orders', [AdminController::class, 'adminOrder'])->name('order');
+Route::get('/search', [AdminController::class, 'search']);
+
 
  
 Route::middleware([
